@@ -1,0 +1,107 @@
+/*
+ * Footer/Footer.module.css
+ */
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-cream);
+  border-top: var(--border-medium);
+  padding-top: var(--space-12);
+}
+
+/* Override global link color for dark footer */
+.footer a {
+  color: var(--color-cream);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding-bottom: var(--space-10);
+  flex-wrap: wrap;
+}
+
+/* ── Brand column ─────────────────────────────────────────────── */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Invert the logo for dark background */
+.brandCol :global(.brand img) {
+  filter: invert(1);
+  image-rendering: pixelated;
+}
+
+.tagline {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-pewter);
+  max-width: 260px;
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Links column ─────────────────────────────────────────────── */
+.linksCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.link {
+  font-family: var(--font-alumni);
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+  color: var(--color-cream);
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-rose);
+  opacity: 1;
+}
+
+/* ── Bottom bar ───────────────────────────────────────────────── */
+.bottom {
+  border-top: 1px solid rgba(253, 251, 212, 0.15);
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+.copy {
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-pewter);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tagline {
+    max-width: 100%;
+  }
+
+  .links {
+    align-items: center;
+  }
+}

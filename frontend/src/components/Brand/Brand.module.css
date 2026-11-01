@@ -1,0 +1,38 @@
+/*
+ * Brand/Brand.module.css
+ * Scales the logo lockup via size prop.
+ * The PNG already contains the full wordmark — we just size the image.
+ * object-fit: contain ensures the logo is never cropped or stretched.
+ */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ── Base logo ─────────────────────────────────────────────────────────── */
+
+.logo {
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  /* image-rendering is set inline on the element (pixelated for pixel-art) */
+}
+
+/* ── Size variants ─────────────────────────────────────────────────────── */
+
+.brand--sm .logo { height: 32px;  width: auto; max-width: 180px; }
+.brand--md .logo { height: 48px;  width: auto; max-width: 260px; }
+.brand--lg .logo { height: 72px;  width: auto; max-width: 380px; }
+
+/* ── Icon-only crop: just the rocket portion ─────────────────────────── */
+/* Clip to show approximately the left 30% of the lockup image (the rocket) */
+.logo--icon-only {
+  /* The rocket occupies roughly the left quarter of the full logo image.
+     We use a fixed width that corresponds to that square portion. */
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+}

@@ -1,0 +1,1 @@
+export { StarBadge } from './StarBadge';

@@ -1,0 +1,208 @@
+/*
+ * Login.module.css — Styles for Login page
+ * Follows design tokens: cream bg, ecru card, border-thick, shadow-lg,
+ * Courier Prime text, Alumni Sans buttons, Advent Pro headings.
+ */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--color-ecru);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10);
+  box-sizing: border-box;
+}
+
+.brandWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-family: var(--font-advent);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-2);
+  color: var(--color-black);
+  line-height: var(--leading-tight);
+}
+
+.subheading {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-black-60);
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-relaxed);
+}
+
+.oauthSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.oauthButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-cream);
+  border: var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-alumni);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-black);
+  cursor: pointer;
+  min-height: var(--touch-target);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.oauthButton:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-cream);
+}
+
+.oauthButton:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.oauthButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.oauthIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-block: var(--space-6);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: var(--border-muted);
+}
+
+.dividerText {
+  padding-inline: var(--space-3);
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-black-60);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.errorAlert {
+  background-color: var(--color-rose-20);
+  border: var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-normal);
+}
+
+.errorIcon {
+  font-size: var(--text-base);
+  line-height: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.forgotRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(var(--space-2) * -1);
+}
+
+.forgotLink {
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition-fast);
+}
+
+.forgotLink:hover {
+  opacity: 0.7;
+}
+
+.submitButton {
+  margin-top: var(--space-2);
+}
+
+.bottomRow {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: var(--border-muted);
+  text-align: center;
+}
+
+.bottomText {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black);
+}
+
+.switchLink {
+  color: var(--color-black);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition-fast);
+}
+
+.switchLink:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-6);
+  }
+}

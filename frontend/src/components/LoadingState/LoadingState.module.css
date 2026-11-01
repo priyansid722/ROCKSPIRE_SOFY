@@ -1,0 +1,48 @@
+/*
+ * LoadingState/LoadingState.module.css
+ * Loading indicator with floating rocket and message.
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-12);
+  text-align: center;
+}
+
+.container--full {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.rocket {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 2s ease-in-out infinite;
+}
+
+.message {
+  font-family: var(--font-courier);
+  color: var(--color-pewter);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocket {
+    animation: none;
+  }
+}

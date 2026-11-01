@@ -1,0 +1,72 @@
+/*
+ * RocketIllustration/RocketIllustration.module.css
+ *
+ * The .wrapper is relative-positioned so callout spans can be
+ * absolute-positioned beside the SVG leaders.
+ *
+ * Float animation: a gentle vertical oscillation (±8px, 3s loop).
+ * Disabled entirely when prefers-reduced-motion: reduce is active.
+ */
+
+@keyframes rocketFloat {
+  0%,  100% { transform: translateY(0px); }
+  50%        { transform: translateY(-10px); }
+}
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  /* Extra right padding leaves space for the callout labels */
+  padding-right: 160px;
+}
+
+.wrapper--animated {
+  animation: rocketFloat 3.5s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion — no animation at all */
+@media (prefers-reduced-motion: reduce) {
+  .wrapper--animated {
+    animation: none;
+  }
+}
+
+.svg {
+  flex-shrink: 0;
+  display: block;
+  filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.10));
+}
+
+/* ── Callout labels ─────────────────────────────────────────────────── */
+
+.callouts {
+  position: absolute;
+  left: calc(100% - 155px); /* aligns with the SVG leader ends */
+  top: 0;
+  bottom: 0;
+  width: 155px;
+  pointer-events: none;
+}
+
+.callout {
+  position: absolute;
+  left: 4px;
+  transform: translateY(-50%);
+  font-family: var(--font-courier);
+  font-size: clamp(0.55rem, 0.9vw, 0.65rem);
+  color: var(--color-black);
+  white-space: nowrap;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+/* Hide callouts on small phones — they overlap the rocket */
+@media (max-width: 479px) {
+  .wrapper {
+    padding-right: 0;
+  }
+  .callouts {
+    display: none;
+  }
+}

@@ -1,0 +1,46 @@
+/*
+ * StarBadge/StarBadge.module.css
+ * Role star icon and label styling.
+ */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  vertical-align: middle;
+}
+
+.wrapper--glitter {
+  animation: glitter-pulse 2s ease-in-out infinite;
+}
+
+.star {
+  display: block;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-alumni);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-black);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1;
+}
+
+@keyframes glitter-pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.6;
+    filter: brightness(1.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper--glitter {
+    animation: none;
+  }
+}

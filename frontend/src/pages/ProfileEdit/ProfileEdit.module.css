@@ -1,0 +1,137 @@
+/*
+ * ProfileEdit.module.css — Styles for Profile Edit page
+ * Follows design tokens: cream bg, ecru avatar section,
+ * Courier Prime notes, and responsive action bar.
+ */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 560px;
+}
+
+.header {
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-advent);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black-60);
+}
+
+.successToast {
+  background-color: var(--color-ecru);
+  border: var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--space-6);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.errorAlert {
+  background-color: var(--color-rose-20);
+  border: var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Avatar Picker Section ─────────────────────────────────────────── */
+.avatarSection {
+  background-color: var(--color-ecru);
+  border: var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionLabel {
+  font-family: var(--font-advent);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--space-4);
+}
+
+/* ── Readonly styling ──────────────────────────────────────────────── */
+.readonlyField input {
+  background-color: var(--color-pewter-20);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ── Bio & Counter ─────────────────────────────────────────────────── */
+.bioWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bioCounter {
+  margin-top: calc(var(--space-2) * -1);
+  text-align: right;
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-pewter);
+}
+
+/* ── Action Bar ────────────────────────────────────────────────────── */
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: var(--border-medium);
+  padding-top: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .actionBar {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--color-cream);
+    padding: var(--space-4) 0;
+    box-shadow: 0 -4px 12px var(--color-black-10);
+    z-index: var(--z-above);
+  }
+}

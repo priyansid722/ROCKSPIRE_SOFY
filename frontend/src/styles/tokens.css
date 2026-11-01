@@ -1,0 +1,155 @@
+/*
+ * tokens.css — ROCKSPIRE SOFY Design Tokens
+ * All CSS custom properties for the entire design system.
+ * Import this ONCE in main.tsx or index.css; never duplicate.
+ *
+ * Rule: NO colours outside this file. Use var(--color-*) everywhere.
+ */
+
+:root {
+  /* ─────────────────────────────────────────────────────────
+     COLOUR PALETTE (official, final — do not add new colours)
+     ───────────────────────────────────────────────────────── */
+  --color-cream:  #FDFBD4;  /* main backgrounds, large sections, light surfaces */
+  --color-rose:   #DEA193;  /* primary buttons, CTAs, highlights, active nav    */
+  --color-black:  #000000;  /* typography, headings, borders, icons, outlines   */
+  --color-ecru:   #E0CD95;  /* secondary card backgrounds, decorative sections  */
+  --color-pewter: #909EAE;  /* secondary buttons, muted metadata, status elements */
+
+  /* Opacity variants (black text on palette backgrounds — all pass AA) */
+  --color-cream-80:  rgba(253, 251, 212, 0.8);
+  --color-rose-20:   rgba(222, 161, 147, 0.2);
+  --color-rose-40:   rgba(222, 161, 147, 0.4);
+  --color-ecru-60:   rgba(224, 205, 149, 0.6);
+  --color-pewter-20: rgba(144, 158, 174, 0.2);
+  --color-pewter-40: rgba(144, 158, 174, 0.4);
+  --color-black-10:  rgba(0, 0, 0, 0.06);
+  --color-black-20:  rgba(0, 0, 0, 0.12);
+  --color-black-40:  rgba(0, 0, 0, 0.4);
+  --color-black-60:  rgba(0, 0, 0, 0.6);
+
+  /* ─────────────────────────────────────────────────────────
+     STAR COLOURS (used ONLY for project role stars)
+     Each star always has a 1.5px black outline for contrast.
+     ───────────────────────────────────────────────────────── */
+  --star-gold:    #D4AF37;  /* team lead                          */
+  --star-silver:  #C0C0C0;  /* member with forked repo            */
+  --star-glitter: #FDBBD4;  /* solo project (glitter pink)        */
+
+  /* ─────────────────────────────────────────────────────────
+     TYPOGRAPHY
+     Font assignments (what uses what) are in DESIGN_SYSTEM.md.
+     ───────────────────────────────────────────────────────── */
+  --font-courier:  'Courier Prime', 'Courier New', monospace;
+  --font-aboreto:  'Aboreto', serif;
+  --font-alumni:   'Alumni Sans', sans-serif;
+  --font-advent:   'Advent Pro', sans-serif;
+
+  /* Type scale — fluid sizes using clamp() */
+  --text-xs:   clamp(0.65rem, 1vw, 0.75rem);   /* 10–12px */
+  --text-sm:   clamp(0.75rem, 1.2vw, 0.875rem); /* 12–14px */
+  --text-base: clamp(0.875rem, 1.5vw, 1rem);    /* 14–16px */
+  --text-md:   clamp(1rem, 1.8vw, 1.125rem);    /* 16–18px */
+  --text-lg:   clamp(1.125rem, 2vw, 1.25rem);   /* 18–20px */
+  --text-xl:   clamp(1.25rem, 2.5vw, 1.5rem);   /* 20–24px */
+  --text-2xl:  clamp(1.5rem, 3vw, 2rem);        /* 24–32px */
+  --text-3xl:  clamp(2rem, 4vw, 2.75rem);       /* 32–44px */
+  --text-4xl:  clamp(2.75rem, 5.5vw, 3.5rem);   /* 44–56px */
+  --text-5xl:  clamp(3.5rem, 7vw, 4.5rem);      /* 56–72px */
+  --text-6xl:  clamp(4.5rem, 9vw, 6rem);        /* 72–96px */
+
+  /* Line heights */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* Letter spacings */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.06em;
+  --tracking-wider:   0.12em;
+  --tracking-widest:  0.2em;
+
+  /* ─────────────────────────────────────────────────────────
+     SPACING — 4px base grid
+     ───────────────────────────────────────────────────────── */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4px  */
+  --space-2:  0.5rem;    /* 8px  */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* ─────────────────────────────────────────────────────────
+     BORDER RADII
+     ───────────────────────────────────────────────────────── */
+  --radius-none: 0;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 9999px;
+
+  /* ─────────────────────────────────────────────────────────
+     BORDERS
+     ───────────────────────────────────────────────────────── */
+  --border-thin:   1px solid var(--color-black);
+  --border-medium: 2px solid var(--color-black);
+  --border-thick:  3px solid var(--color-black);
+  --border-muted:  1px solid var(--color-black-20);
+
+  /* ─────────────────────────────────────────────────────────
+     SHADOWS (black, low opacity — no colour)
+     ───────────────────────────────────────────────────────── */
+  --shadow-none: none;
+  --shadow-sm:   2px 2px 0 var(--color-black);
+  --shadow-md:   4px 4px 0 var(--color-black);
+  --shadow-lg:   6px 6px 0 var(--color-black);
+  --shadow-xl:   8px 8px 0 var(--color-black);
+  --shadow-soft: 0 4px 24px var(--color-black-20);
+
+  /* ─────────────────────────────────────────────────────────
+     Z-INDEX LAYERS
+     ───────────────────────────────────────────────────────── */
+  --z-base:    0;
+  --z-above:   10;
+  --z-navbar:  100;
+  --z-overlay: 200;
+  --z-modal:   300;
+  --z-toast:   400;
+
+  /* ─────────────────────────────────────────────────────────
+     TRANSITIONS
+     ───────────────────────────────────────────────────────── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ─────────────────────────────────────────────────────────
+     LAYOUT / BREAKPOINTS
+     Use these as reference; actual media queries are in each component.
+     --bp-mobile:  375px
+     --bp-tablet:  768px
+     --bp-laptop:  1024px
+     --bp-desktop: 1280px
+     ───────────────────────────────────────────────────────── */
+  --max-width-content: 1200px;
+  --max-width-narrow:  680px;
+  --max-width-form:    480px;
+
+  /* Touch target minimum (WCAG 2.5.8) */
+  --touch-target: 44px;
+
+  /* Navbar height */
+  --navbar-height: 64px;
+}

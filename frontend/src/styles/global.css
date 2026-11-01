@@ -1,0 +1,214 @@
+/*
+ * global.css — ROCKSPIRE SOFY Global Styles
+ * Imports tokens, sets CSS reset, font defaults, focus rings,
+ * and animation guards. Import this once in main.tsx.
+ */
+
+@import './tokens.css';
+
+/* ── Google Fonts are loaded via <link> in index.html ─────────────────── */
+
+/* ── CSS Reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-black);
+  font-family: var(--font-courier);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Typography Assignments ─────────────────────────────────────────────
+   Courier Prime  → body, paragraphs, inputs, labels, descriptions, footer
+   Aboreto        → ROCKSPIRE wordmark, page titles, major h1
+   Alumni Sans    → nav, buttons, badges, tabs, SOFY text
+   Advent Pro     → sub-headings, card titles, section eyebrows, h2/h3
+ ──────────────────────────────────────────────────────────────────────── */
+
+h1 {
+  font-family: var(--font-aboreto);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-black);
+}
+
+h2 {
+  font-family: var(--font-advent);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-black);
+}
+
+h3 {
+  font-family: var(--font-advent);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-black);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-advent);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-black);
+}
+
+p {
+  font-family: var(--font-courier);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-black);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* Inputs and labels use Courier Prime */
+input, textarea, select, label {
+  font-family: var(--font-courier);
+  font-size: var(--text-base);
+  color: var(--color-black);
+}
+
+/* Buttons use Alumni Sans */
+button {
+  font-family: var(--font-alumni);
+  cursor: pointer;
+}
+
+/* ── Lists ──────────────────────────────────────────────────────────────── */
+ul, ol {
+  list-style: none;
+}
+
+/* ── Images ─────────────────────────────────────────────────────────────── */
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Pixel-art images — preserve crispness ──────────────────────────────── */
+img.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges; /* Firefox */
+}
+
+/* ── Focus Rings (visible keyboard navigation) ──────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--color-black);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.container--narrow {
+  max-width: var(--max-width-narrow);
+}
+
+.container--form {
+  max-width: var(--max-width-form);
+}
+
+/* ── Glitter star sparkle animation ─────────────────────────────────────── */
+@keyframes glitter-pulse {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50%       { opacity: 0.6; filter: brightness(1.4); }
+}
+
+/* ── Typewriter reveal animation (CSS steps) ────────────────────────────── */
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50%       { border-color: var(--color-black); }
+}
+
+/* ── Nose cone opening animation ────────────────────────────────────────── */
+@keyframes nose-open {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-60px); opacity: 0; }
+}
+
+@keyframes content-rise {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Floating animation for mascot/rocket art ───────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Spin for loading states ────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Fade in ─────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ACCESSIBILITY: Disable ALL animations for users who prefer it ────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

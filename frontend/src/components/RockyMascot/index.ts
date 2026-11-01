@@ -1,0 +1,1 @@
+export { RockyMascot } from './RockyMascot';

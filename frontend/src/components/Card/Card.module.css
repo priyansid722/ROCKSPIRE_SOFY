@@ -1,0 +1,63 @@
+/*
+ * Card/Card.module.css
+ * Reusable card container styles with background and elevation variants.
+ */
+
+.card {
+  border: var(--border-thin);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  color: var(--color-black);
+  box-sizing: border-box;
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+/* ── Backgrounds ───────────────────────────────────────────────────────── */
+
+.card--cream {
+  background-color: var(--color-cream);
+}
+
+.card--ecru {
+  background-color: var(--color-ecru);
+}
+
+.card--rose {
+  background-color: var(--color-rose);
+}
+
+.card--pewter {
+  background-color: var(--color-pewter);
+}
+
+/* ── Elevations ────────────────────────────────────────────────────────── */
+
+.card--flat {
+  box-shadow: var(--shadow-none);
+}
+
+.card--raised {
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Clickable ─────────────────────────────────────────────────────────── */
+
+.card--clickable {
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+}
+
+.card--clickable:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card--clickable:focus-visible {
+  outline: 2.5px solid var(--color-black);
+  outline-offset: 3px;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "rockspire-scripts",
+  "version": "1.0.0",
+  "description": "One-time helper scripts for ROCKSPIRE SOFY (not part of the frontend build)",
+  "private": true,
+  "scripts": {
+    "optimize-avatars": "node optimize-avatars.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true
+  }
+}

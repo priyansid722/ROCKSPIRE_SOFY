@@ -1,0 +1,74 @@
+/*
+ * DevMockBanner/DevMockBanner.module.css
+ * Fixed dev-mode warning banner at the top of the viewport.
+ */
+
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-toast);
+  background-color: var(--color-ecru);
+  border-bottom: var(--border-medium);
+  padding: 6px var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-family: var(--font-alumni);
+  font-size: var(--text-sm);
+  color: var(--color-black);
+  box-sizing: border-box;
+}
+
+.icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-alumni);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.text {
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-black);
+}
+
+.text code {
+  background-color: var(--color-black-10);
+  padding: 1px 4px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-courier);
+  font-weight: bold;
+}
+
+/* Reset button styling */
+.resetButton {
+  background: var(--color-rose);
+  color: var(--color-black);
+  border: var(--border-thin);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-alumni);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  margin-left: var(--space-2);
+  min-height: var(--touch-target);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.resetButton:hover {
+  background: var(--color-rose-20);
+  transform: translateY(-1px);
+}
+
+.resetButton:active {
+  transform: translateY(1px);
+}

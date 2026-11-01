@@ -1,0 +1,417 @@
+/*
+ * Landing/Landing.module.css
+ */
+
+/* ── Page wrapper ──────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Landing nav ───────────────────────────────────────────────────── */
+.landingNav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-navbar);
+  background-color: var(--color-cream);
+  border-bottom: var(--border-thin);
+  padding: var(--space-3) 0;
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navLink {
+  font-family: var(--font-alumni);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-black);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-4);
+  letter-spacing: var(--tracking-wide);
+  transition: opacity var(--transition-fast);
+}
+
+.navLink:hover {
+  opacity: 0.65;
+}
+
+/* ── HERO ──────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+  overflow: visible;
+  padding: var(--space-10) var(--space-6) var(--space-20);
+  gap: var(--space-6);
+}
+
+/* Logo sits at the top, never overlaps anything */
+.heroLogo {
+  flex-shrink: 0;
+  margin-bottom: var(--space-2);
+}
+
+/* Rocket wrapper — the whole group gently lifts when About scrolls in */
+.rocketWrap {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rocketWrap--lifted {
+  transform: translateY(-24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocketWrap {
+    transition: none;
+  }
+  .rocketWrap--lifted {
+    transform: none;
+  }
+}
+
+.heroTagline {
+  font-family: var(--font-courier);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-black);
+  text-align: center;
+  max-width: 100%;
+}
+
+.heroSub {
+  font-family: var(--font-courier);
+  font-size: var(--text-md);
+  color: var(--color-black-60);
+  line-height: var(--leading-relaxed);
+  max-width: 560px;
+  text-align: center;
+}
+
+.heroCTAs {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
+
+/* ── ABOUT ─────────────────────────────────────────────────────────── */
+.about {
+  background-color: var(--color-ecru);
+  padding: var(--space-20) var(--space-6);
+  border-top: var(--border-thin);
+  border-bottom: var(--border-thin);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionEyebrow {
+  font-family: var(--font-advent);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  color: var(--color-black);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-10);
+  text-align: center;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+.aboutCard {
+  background-color: var(--color-cream);
+  border: var(--border-thin);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-md);
+}
+
+.aboutIcon {
+  font-size: 2rem;
+}
+
+.aboutCardTitle {
+  font-family: var(--font-advent);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.aboutCardText {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black-60);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── ROCKY.AI SECTION ───────────────────────────────────────────────── */
+.rockySection {
+  background-color: var(--color-cream);
+  border-top: var(--border-thin);
+  border-bottom: var(--border-thin);
+  padding: var(--space-20) var(--space-6);
+}
+
+.rockyInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.rockyContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.rockyTitle {
+  font-family: var(--font-advent);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.rockyText {
+  font-family: var(--font-courier);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-black);
+}
+
+.rockyDisclaimer {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-pewter);
+  background-color: var(--color-pewter-20);
+  border: 1px solid var(--color-pewter);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.rockyMascotWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Badges ─────────────────────────────────────────────────────────── */
+.comingLaterBadge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-ecru);
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-4);
+  font-family: var(--font-alumni);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-black);
+  width: fit-content;
+}
+
+.placeholderBadge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-pewter-20);
+  border: 1px solid var(--color-pewter);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-4);
+  font-family: var(--font-alumni);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-black);
+  width: fit-content;
+}
+
+/* ── FACTS SECTION ─────────────────────────────────────────────────── */
+.factsSection {
+  background-color: var(--color-black);
+  color: var(--color-cream);
+  padding: var(--space-16) var(--space-6);
+}
+
+.factsBadge {
+  font-family: var(--font-alumni);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-pewter);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.factCard {
+  background-color: rgba(253, 251, 212, 0.05);
+  border: 1px solid rgba(253, 251, 212, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-10);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  min-height: 100px;
+  transition: opacity 0.5s ease;
+}
+
+.factIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.factText {
+  font-family: var(--font-courier);
+  font-size: var(--text-lg);
+  color: var(--color-cream);
+  line-height: var(--leading-relaxed);
+}
+
+.factsNote {
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-pewter);
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+/* ── LANGUAGE SECTION ─────────────────────────────────────────────── */
+.langSection {
+  background-color: var(--color-ecru);
+  border-top: var(--border-thin);
+  border-bottom: var(--border-thin);
+  padding: var(--space-16) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.langTitle {
+  font-family: var(--font-advent);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.langSub {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black-60);
+  margin-bottom: var(--space-6);
+}
+
+.langGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.langChip {
+  font-family: var(--font-alumni);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background-color: var(--color-cream);
+  border: var(--border-thin);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-black-60);
+  cursor: not-allowed;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── CONNECT SECTION ─────────────────────────────────────────────── */
+.connectSection {
+  background-color: var(--color-rose);
+  border-top: var(--border-thin);
+  padding: var(--space-16) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.connectTitle {
+  font-family: var(--font-advent);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-black);
+  margin-top: var(--space-3);
+}
+
+.connectText {
+  font-family: var(--font-courier);
+  font-size: var(--text-md);
+  color: var(--color-black);
+  max-width: 500px;
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .rockyInner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rockyMascotWrap {
+    order: -1;
+  }
+
+  .heroCTAs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .factCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-12) var(--space-4) var(--space-16);
+  }
+
+  .heroTagline {
+    font-size: var(--text-xl);
+  }
+}

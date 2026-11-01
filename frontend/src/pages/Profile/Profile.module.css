@@ -1,0 +1,198 @@
+/*
+ * Profile.module.css — Styles for Profile dashboard
+ * Follows design tokens: cream bg, ecru header, responsive CSS grid,
+ * star legend, and status filter tabs.
+ */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWrap {
+  max-width: var(--max-width-content);
+  margin: var(--space-8) auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+}
+
+/* ── Profile Header ────────────────────────────────────────────────── */
+.header {
+  background-color: var(--color-ecru);
+  border-bottom: var(--border-medium);
+  padding: var(--space-8) 0;
+}
+
+.headerInner {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex: 1;
+  min-width: 280px;
+}
+
+.userAvatar {
+  flex-shrink: 0;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.fullName {
+  font-family: var(--font-advent);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-black);
+  line-height: var(--leading-tight);
+}
+
+.username {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black-60);
+}
+
+.bio {
+  font-family: var(--font-courier);
+  font-size: var(--text-sm);
+  color: var(--color-black);
+  margin-top: var(--space-2);
+  max-width: 540px;
+  line-height: var(--leading-normal);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ── Section & Filter Tabs ─────────────────────────────────────────── */
+.section {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6) var(--space-16);
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: var(--border-thin);
+  padding-bottom: var(--space-2);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.tabButton {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-alumni);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-black-60);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  margin-bottom: -10px;
+}
+
+.tabButton:hover {
+  color: var(--color-black);
+}
+
+.tabButton--active {
+  color: var(--color-black);
+  border-bottom-color: var(--color-rose);
+  font-weight: 700;
+}
+
+/* ── Star Legend ───────────────────────────────────────────────────── */
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-courier);
+  font-size: var(--text-xs);
+  color: var(--color-black);
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ── Project Grid ──────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.emptyWrap {
+  padding-block: var(--space-12);
+}
+
+/* ── Responsive adjustments ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: var(--space-6) 0;
+  }
+
+  .headerInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .legend {
+    gap: var(--space-3);
+  }
+}

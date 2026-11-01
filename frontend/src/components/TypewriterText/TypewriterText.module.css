@@ -1,0 +1,42 @@
+/*
+ * TypewriterText/TypewriterText.module.css
+ * Step-based typewriter reveal animation.
+ */
+
+.typewriter {
+  font-family: var(--font-courier);
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-black);
+  width: 0;
+  animation:
+    typewriter var(--duration, 3s) steps(var(--chars, 20), end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-black);
+  }
+}
+
+/* global.css disables animations for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    width: 100% !important;
+    border-right: none;
+    animation: none;
+  }
+}

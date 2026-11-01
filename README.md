@@ -32,11 +32,11 @@ Rockspire Sofy connects to your GitHub repositories, analyzes them with evidence
 
 ## What is Rockspire Sofy?
 
-Rockspire Sofy is a platform for developers who want an honest answer to three questions about their projects:
+-Rockspire Sofy is a platform for developers who want an honest answer to three questions about their projects:
 
-1. **How good is this project, really?** Findings come with file and line references, and each is labelled *confirmed*, *possible*, or *suggestion*.
-2. **Does this project prove the skills a job asks for?** Paste a job description and see which requirements the repository *demonstrates*, *partially demonstrates*, or leaves *unverified*.
-3. **What should I do next, and what will it cost?** Findings and skill gaps become prioritized **missions**, and every AI call is tracked with usage and estimated cost.
+1. **How good is this project, really?** -Findings come with file and line references, and each is labelled *confirmed*, *possible*, or *suggestion*.
+2. **Does this project prove the skills a job asks for?** -Paste a job description and see which requirements the repository *demonstrates*, *partially demonstrates*, or leaves *unverified*.
+3. **What should I do next, and what will it cost?** -Findings and skill gaps become prioritized **missions**, and every AI call is tracked with usage and estimated cost.
 
 The interface is a futuristic **mission-control dashboard** where the parts of a rocket represent areas of software quality. Completing missions fills in the rocket.
 

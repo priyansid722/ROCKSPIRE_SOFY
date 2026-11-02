@@ -41,10 +41,33 @@ except ImportError:  # pragma: no cover
 HERE = os.path.dirname(os.path.abspath(__file__))
 ASSETS = os.path.join(HERE, "assets")
 LOGO = os.path.join(ASSETS, "rockspire-logo.png")
+LOGO_SRC = LOGO                                   # original (already RGBA)
+LOGO_T = os.path.join(ASSETS, "rockspire-logo-transparent.png")
 MASCOT = os.path.join(ASSETS, "mascot.png")
 OUT = os.path.join(HERE, "Rockspire_Sofy_Presentation.pptx")
 
 GITHUB_URL = "github.com/priyansid722/ROCKSPIRE_SOFY"
+
+
+def ensure_transparent_logo():
+    """Make white / near-white pixels of the logo transparent (Pillow) and
+    save to LOGO_T. The source logo is already mostly transparent, but we
+    run this so the corner logo blends cleanly on any background."""
+    if not _HAS_PIL:
+        return LOGO_SRC
+    try:
+        im = Image.open(LOGO_SRC).convert("RGBA")
+        px = im.load()
+        w, h = im.size
+        for y in range(h):
+            for x in range(w):
+                r, g, b, a = px[x, y]
+                if r >= 240 and g >= 240 and b >= 240:
+                    px[x, y] = (r, g, b, 0)
+        im.save(LOGO_T)
+        return LOGO_T
+    except Exception:
+        return LOGO_SRC
 
 # --------------------------------------------------------------------------- #
 # Palette
@@ -214,30 +237,53 @@ def add_image_fit(slide, path, x, y, max_w, max_h, align="center",
 MARGIN = Inches(0.6)
 
 
+# Corner chrome geometry — identical on every slide.
+LOGO_W = Inches(1.45)          # small but readable corner logo
+LOGO_H = Inches(0.72)          # (2:1 wordmark aspect fits inside this box)
+LOGO_X = SW - MARGIN - LOGO_W  # top-right
+LOGO_Y = Inches(0.32)
+NUM_X = MARGIN                 # top-left slide number
+NUM_Y = Inches(0.3)
+
+
 def new_slide(prs):
     s = prs.slides.add_slide(prs.slide_layouts[6])  # blank
     add_rect(s, 0, 0, SW, SH, fill=CREAM)
     return s
 
 
+def corner_logo(slide):
+    """Small Rockspire logo, top-right, same size/position on every slide."""
+    add_image_fit(slide, LOGO_T, LOGO_X, LOGO_Y, LOGO_W, LOGO_H,
+                  align="right", valign="middle")
+
+
+def slide_number(slide, num):
+    """Slide number in the top-left corner (Advent Pro, pewter)."""
+    add_text(slide, NUM_X, NUM_Y, Inches(1.2), Inches(0.4),
+             [[run(f"{num:02d}", 18, PEWTER, F_NUM, b=True)]],
+             align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
+
+
+def chrome(slide, num):
+    """Add the corner logo + slide number present on all six slides."""
+    corner_logo(slide)
+    slide_number(slide, num)
+
+
 def header(slide, eyebrow, title, num):
-    """Standard content-slide header with a page number chip."""
-    # page-number chip (top-right)
-    chip_d = Inches(0.62)
-    chip_x = SW - MARGIN - chip_d
-    add_rect(slide, chip_x, Inches(0.4), chip_d, chip_d, fill=ROSE,
-             line=BLACK, line_w=Pt(1.5), shape=MSO_SHAPE.OVAL)
-    add_text(slide, chip_x, Inches(0.4), chip_d, chip_d,
-             [[run(f"0{num}", 17, BLACK, F_NUM, b=True)]],
-             align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-    # eyebrow
-    add_text(slide, MARGIN, Inches(0.46), Inches(9), Inches(0.35),
+    """Standard content-slide header. Logo (top-right) + number (top-left)
+    live in the corners; eyebrow/title sit below them so nothing collides."""
+    chrome(slide, num)
+    # eyebrow — sits just below the top-left slide number (which ends ~0.7")
+    add_text(slide, MARGIN, Inches(0.74), Inches(9), Inches(0.32),
              [[run(eyebrow.upper(), 14, ROSE, F_NUM, b=True)]])
-    # title
-    add_text(slide, MARGIN, Inches(0.74), Inches(11.4), Inches(0.9),
-             [[run(title, 40, BLACK, F_HEAD, b=True)]])
+    # title — a touch lower than the original to clear the corner chrome;
+    # width capped so it cannot reach the top-right logo
+    add_text(slide, MARGIN, Inches(1.0), Inches(10.4), Inches(0.85),
+             [[run(title, 38, BLACK, F_HEAD, b=True)]])
     # underline rule
-    add_line(slide, MARGIN, Inches(1.62), SW - MARGIN, Inches(1.62),
+    add_line(slide, MARGIN, Inches(1.74), SW - MARGIN, Inches(1.74),
              color=BLACK, width=Pt(2.25))
 
 
@@ -290,36 +336,50 @@ def slide_title(prs):
     s = new_slide(prs)
     # decorative side panel
     add_rect(s, 0, 0, Inches(0.35), SH, fill=ROSE)
-    # thin top + bottom rules
-    add_line(s, Inches(1.0), Inches(0.9), SW - Inches(1.0), Inches(0.9),
+    # thin top rule (kept clear of the corner chrome)
+    add_line(s, Inches(1.0), Inches(1.15), SW - Inches(1.0), Inches(1.15),
              color=PEWTER, width=Pt(1.25))
 
-    # logo
-    add_image_fit(s, LOGO, Inches(1.0), Inches(1.25), Inches(6.2),
-                  Inches(1.7), align="left")
+    # corner chrome: small logo top-right + "01" top-left (as on every slide)
+    chrome(s, 1)
+
+    # hero logo (kept — "Rockspire Sofy" wordmark stays)
+    add_image_fit(s, LOGO, Inches(1.0), Inches(1.5), Inches(6.0),
+                  Inches(1.55), align="left")
 
     # big wordmark title (Aboreto)
-    add_text(s, Inches(1.0), Inches(3.15), Inches(11.4), Inches(1.5),
-             [[run("ROCKSPIRE SOFY", 66, BLACK, F_TITLE, b=True)]])
+    add_text(s, Inches(1.0), Inches(3.2), Inches(11.4), Inches(1.4),
+             [[run("ROCKSPIRE SOFY", 62, BLACK, F_TITLE, b=True)]])
 
     # tagline
-    add_text(s, Inches(1.03), Inches(4.5), Inches(11), Inches(0.7),
+    add_text(s, Inches(1.03), Inches(4.42), Inches(11), Inches(0.7),
              [[run("AI-powered software development intelligence for "
                    "your portfolio.", 20, BLACK, F_BODY)]])
 
     # accent rule under tagline
-    add_line(s, Inches(1.05), Inches(5.15), Inches(6.2), Inches(5.15),
+    add_line(s, Inches(1.05), Inches(5.02), Inches(6.2), Inches(5.02),
              color=ROSE, width=Pt(3))
 
-    # author + github card
-    card = add_rect(s, Inches(1.0), Inches(5.6), Inches(7.2), Inches(1.15),
+    # team + repo card (both team members credited)
+    card = add_rect(s, Inches(1.0), Inches(5.35), Inches(9.9), Inches(1.6),
                     fill=ECRU, line=BLACK, line_w=Pt(1.5))
-    add_text(s, Inches(1.25), Inches(5.72), Inches(6.8), Inches(0.5),
-             [[run("BY  ", 13, PEWTER, F_NUM, b=True),
-               run("PRIYANSI", 22, BLACK, F_HEAD, b=True)]],
+    # Priyansi — Team Lead
+    add_text(s, Inches(1.25), Inches(5.47), Inches(9.4), Inches(0.4),
+             [[run("TEAM LEAD   ", 11, PEWTER, F_NUM, b=True),
+               run("Priyansi", 18, BLACK, F_HEAD, b=True),
+               run("   \u25B8 github.com/priyansid722", 12, BLACK, F_BODY)]],
              anchor=MSO_ANCHOR.MIDDLE)
-    add_text(s, Inches(1.25), Inches(6.22), Inches(6.8), Inches(0.4),
-             [[run("\u25B8  " + GITHUB_URL, 13, BLACK, F_BODY)]])
+    # Trishanu — Team Member
+    add_text(s, Inches(1.25), Inches(5.9), Inches(9.4), Inches(0.4),
+             [[run("TEAM MEMBER   ", 11, PEWTER, F_NUM, b=True),
+               run("Trishanu Dasgupta", 18, BLACK, F_HEAD, b=True),
+               run("   \u25B8 github.com/trishanudg01", 12, BLACK, F_BODY)]],
+             anchor=MSO_ANCHOR.MIDDLE)
+    # project repo
+    add_text(s, Inches(1.25), Inches(6.35), Inches(9.4), Inches(0.4),
+             [[run("PROJECT   ", 11, PEWTER, F_NUM, b=True),
+               run("\u25B8 " + GITHUB_URL, 13, BLACK, F_BODY, b=True)]],
+             anchor=MSO_ANCHOR.MIDDLE)
 
     footer(s)
     return s
@@ -605,7 +665,7 @@ def slide_architecture(prs):
              fill=ECRU, line=BLACK, line_w=Pt(1.25))
     add_text(s, MARGIN + Inches(0.25), Inches(5.55), SW - 2 * MARGIN - Inches(0.5),
              Inches(0.78),
-             [[run("FINOPS LAYER   ", 13, ROSE, F_NUM, b=True),
+             [[run("FINOPS LAYER   ", 13, BLACK, F_NUM, b=True),
                run("A cost layer tracks the platform's own AI spend and "
                    "labels every number ", 13, BLACK, F_BODY),
                run("ACTUAL", 13, BLACK, F_BODY, b=True),
@@ -792,6 +852,8 @@ def slide_vision(prs):
 # --------------------------------------------------------------------------- #
 
 def build():
+    ensure_transparent_logo()   # writes assets/rockspire-logo-transparent.png
+
     prs = Presentation()
     prs.slide_width = SW
     prs.slide_height = SH

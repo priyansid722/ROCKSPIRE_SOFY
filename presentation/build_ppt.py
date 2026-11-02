@@ -363,10 +363,10 @@ def slide_title(prs):
     # team + repo card (both team members credited)
     card = add_rect(s, Inches(1.0), Inches(5.35), Inches(9.9), Inches(1.6),
                     fill=ECRU, line=BLACK, line_w=Pt(1.5))
-    # Priyansi — Team Lead
+    # Priyansi Das — Team Lead
     add_text(s, Inches(1.25), Inches(5.47), Inches(9.4), Inches(0.4),
              [[run("TEAM LEAD   ", 11, PEWTER, F_NUM, b=True),
-               run("Priyansi", 18, BLACK, F_HEAD, b=True),
+               run("Priyansi Das", 18, BLACK, F_HEAD, b=True),
                run("   \u25B8 github.com/priyansid722", 12, BLACK, F_BODY)]],
              anchor=MSO_ANCHOR.MIDDLE)
     # Trishanu — Team Member
